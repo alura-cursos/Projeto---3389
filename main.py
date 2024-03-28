@@ -7,7 +7,7 @@ atividade = "praia"
 prompt = f"Crie um roteiro de viagem de {numero_de_dias} dias, para uma família com {numero_de_criancas} crianças, que gostam de {atividade}."
 print(prompt)
 
-cliente = OpenAI(api_key="sk-xxx")
+cliente = OpenAI(api_key="")
 
 resposta = cliente.chat.completions.create(
     model="gpt-3.5-turbo",
