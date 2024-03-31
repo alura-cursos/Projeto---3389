@@ -5,7 +5,7 @@ from langchain.chains import SimpleSequentialChain
 from langchain.chains import LLMChain
 from langchain.chains import ConversationChain
 from langchain.globals import set_debug
-from langchain.memory import ConversationBufferMemory
+from langchain.memory import ConversationBufferWindowMemory
 import os
 from langchain_core.output_parsers import StrOutputParser
 
@@ -28,7 +28,7 @@ mensagens = [
         "Na primeira cidade que você sugeriu lá atrás, quero saber 5 restaurantes para visitar. Responda somente o nome da cidade e o nome dos restaurantes.",
 ]
 
-memory = ConversationBufferMemory()
+memory = ConversationBufferWindowMemory(k=2)
 
 conversation = ConversationChain(llm=llm,
                                  verbose=True,
