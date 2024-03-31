@@ -7,7 +7,7 @@ from langchain.chains import ConversationChain
 from langchain.globals import set_debug
 from langchain_openai import OpenAIEmbeddings
 from langchain.memory import ConversationSummaryMemory
-from langchain_community.document_loaders import TextLoader
+from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.vectorstores import FAISS
 from langchain_text_splitters import CharacterTextSplitter
 import os
@@ -24,8 +24,15 @@ llm = ChatOpenAI(
     temperature=0.5,
     api_key=os.getenv("OPENAI_API_KEY"))
 
-carregador = TextLoader("GTB_gold_Nov23.txt", encoding="utf-8")
-documentos = carregador.load()
+carregadores = [
+    PyPDFLoader("GTB_standard_Nov23.pdf"),
+    PyPDFLoader("GTB_gold_Nov23.pdf"),
+    PyPDFLoader("GTB_platinum_Nov23.pdf")
+]
+
+documentos = []
+for carregador in carregadores:
+    documentos.extend(carregador.load())
 
 
 quebrador = CharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
