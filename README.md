@@ -7,7 +7,7 @@
 **Windows:**
 ```bash
 python -m venv langchain
-langchain\Scripts\activate
+source langchain\Scripts\activate
 ```
 
 **Mac/Linux:**
