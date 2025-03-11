@@ -1,7 +1,6 @@
-# LangChain e Python: criando ferramentas com a LLM OpenAI
-
 <img width="989" alt="image" src="https://github.com/user-attachments/assets/8d596811-2a2e-4b42-bb4c-94a218d6af98" />
 
+# LangChain e Python: criando ferramentas com a LLM OpenAI
 
 ## ⚙️ Guia de Configuração
 
