@@ -16,8 +16,8 @@ source langchain\Scripts\activate
 
 **Mac/Linux:**
 ```bash
-python3 -m venv langchain
-source langchain/bin/activate
+python -m venv langchain
+langchain\Scripts\activate
 ```
 
 ### 2. Instalar Dependências
