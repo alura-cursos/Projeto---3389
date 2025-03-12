@@ -7,6 +7,9 @@ from langchain.chains import LLMChain
 from langchain.globals import set_debug
 import os
 from dotenv import load_dotenv
+
+#para atualizaar a importação usse a versão de importação abaixo, no lugar da importação da linha 12
+#from pydantic.v1 import Field, BaseModel 
 from langchain_core.pydantic_v1 import Field, BaseModel
 from langchain_core.output_parsers import JsonOutputParser, StrOutputParser
 
