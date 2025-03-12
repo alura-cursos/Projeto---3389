@@ -28,6 +28,55 @@ mensagens = [
         "Na primeira cidade que você sugeriu lá atrás, quero saber 5 restaurantes para visitar. Responda somente o nome da cidade e o nome dos restaurantes.",
 ]
 
+"""
+Este código é uma alternativa à classe ConversationChain, que será depreciadas.  
+Ele utiliza a estrutura de RunnableWithMessageHistory para armazenar mensagens. 
+O código está comentado por padrão para evitar execução automática, mas pode ser descomentado conforme necessário.
+
+Para testar, basta remover os comentários da seção correspondente. E comentar o codigo depreciado que começa na linha 80.
+"""
+
+''' # Remova este comentário para ativar o código
+
+# Importação das classes necessárias para lidar com histórico de mensagens e execução de modelos de linguagem
+from langchain_core.chat_history import BaseChatMessageHistory, InMemoryChatMessageHistory
+from langchain_core.runnables.history import RunnableWithMessageHistory
+
+# Dicionário para armazenar os históricos de conversa por sessão
+armazenamento = {}
+
+# Configuração utilizada para definir a sessão de mensagens
+config = {"configurable": {"session_id": "id_aula_aleatorio"}}
+
+def get_session_history(session_id: str) -> BaseChatMessageHistory:
+    """
+    Função para recuperar ou criar um histórico de mensagens para uma determinada sessão.
+
+    Parâmetros:
+    - session_id (str): Identificador único da sessão.
+
+    Retorno:
+    - Instância de InMemoryChatMessageHistory associada à sessão.
+    """
+    if session_id not in armazenamento:
+        # Se a sessão não existir, cria um novo histórico em memória
+        armazenamento[session_id] = InMemoryChatMessageHistory()
+    
+    return armazenamento[session_id]
+
+# Criando um objeto de conversa que mantém histórico
+# Aqui, `llm` representa um modelo de linguagem previamente definido
+conversa_com_historico = RunnableWithMessageHistory(llm, get_session_history, config=config)
+
+# Iterando sobre a lista de mensagens para processar cada uma com o modelo de IA
+for mensagem in mensagens:
+    resposta = conversa_com_historico.invoke(mensagem)
+
+# Exibindo o histórico de mensagens da sessão "id_aula_aleatorio"
+print("Histórico: \n\n", armazenamento["id_aula_aleatorio"].messages)
+
+''' # Remova esta linha de comentários para ativar o código
+
 memory = ConversationBufferWindowMemory(k=2)
 
 conversation = ConversationChain(llm=llm,
